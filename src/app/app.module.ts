@@ -13,6 +13,8 @@ import {gameReducer} from './store/game/game.reducer';
 import {GameEffects} from './store/game/game.effects';
 import {jackpotReducer} from './store/jackpot/jackpot.reducer';
 import {JackpotEffects} from './store/jackpot/jackpot.effects';
+import {categoryReducer, selectedCategoryReducer} from './store/category/category.reducer';
+import {CategoryModule} from './category/category.module';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,12 @@ import {JackpotEffects} from './store/jackpot/jackpot.effects';
     BrowserModule,
     BrowserAnimationsModule,
     GameModule,
+    CategoryModule,
     StoreModule.forRoot({
         game: gameReducer,
-        jackpot: jackpotReducer
+        jackpot: jackpotReducer,
+        categories: categoryReducer,
+        selectedCategory: selectedCategoryReducer
       },
       {}
     ),

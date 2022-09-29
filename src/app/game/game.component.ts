@@ -6,6 +6,7 @@ import {Store} from '@ngrx/store';
 import {AppState} from '../store/app.state';
 import {Jackpot} from '../jackpot/jackpot';
 import {filter, map} from 'rxjs/operators';
+import {selectSelectedCategory} from '../store/category/category.selectors';
 
 @Component({
   selector: 'app-game',
@@ -34,8 +35,7 @@ import {filter, map} from 'rxjs/operators';
 })
 export class GameComponent implements OnInit {
   @Input() game?: Game;
-  @Input() currentCategory?: string;
-
+  currentCategory?: string;
   jackpot?: Jackpot;
   imageFound = true;
 
@@ -56,6 +56,14 @@ export class GameComponent implements OnInit {
             this.jackpot = jackpot;
           }
         });
+
+      this.store
+          .pipe(
+              map(state => selectSelectedCategory(state))
+          )
+          .subscribe(currentCategory => {
+              this.currentCategory = currentCategory;
+          });
     }
   }
 

@@ -9,7 +9,7 @@ export interface GameState {
 export const gameFeatureKey = 'game';
 
 export interface GameRootState {
-  [gameFeatureKey]: GameState;
+    [gameFeatureKey]: GameState;
 }
 
 const initialState: GameState = {};
