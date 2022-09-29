@@ -1,0 +1,48 @@
+.header {
+  height: 50px;
+  align-items: center;
+  display: flex;
+  background: var(--dark);
+
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    width: 100%;
+    flex: 1 1 auto;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+
+    li {
+      flex: 1 1 auto;
+      text-transform: capitalize;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      color: white;
+      cursor: pointer;
+
+      &.selected {
+        background: var(--green);
+        cursor: default;
+      }
+    }
+  }
+}
+
+.games {
+  display: flex;
+
+  .games-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .game-wrapper {
+      display: flex;
+      margin: 15px 5px;
+    }
+  }
+}
