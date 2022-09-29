@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AppState} from './store/app.state';
 import {Game} from './game/game';
-import {selectGames} from "./store/game/game.selectors";
-import {loadGames} from "./store/game/game.actions";
-import {loadJackpots} from "./store/jackpot/jackpot.actions";
-import {filter, map} from "rxjs/operators";
+import {selectGames} from './store/game/game.selectors';
+import {loadGames} from './store/game/game.actions';
+import {loadJackpots} from './store/jackpot/jackpot.actions';
+import {filter, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -32,7 +32,7 @@ import {filter, map} from "rxjs/operators";
 })
 export class AppComponent implements OnInit {
   categories: string[] = [];
-  selectedCategory: string = 'new';
+  selectedCategory = 'new';
   selectedGames: Game[] = [];
   otherCategories = ['fun', 'virtual', 'ball'];
 
@@ -46,31 +46,31 @@ export class AppComponent implements OnInit {
     this.getCurrentCategoryGames();
   }
 
-  getCurrentCategoryGames() {
+  getCurrentCategoryGames(): void {
     this.store
       .pipe(
         map(state => selectGames(state)),
         filter(val => val !== undefined)
       )
-      .subscribe((_games: Game[]) => {
-        let distinctCategories: string[] = [];
+      .subscribe((games: Game[]) => {
+        const distinctCategories: string[] = [];
         this.selectedGames = [];
 
-        if(_games && _games.length) {
-          _games.forEach(game => {
+        if (games && games.length) {
+          games.forEach(game => {
             game.categories.forEach(category => {
-              if(this.selectedCategory == 'other') {
-                if(this.otherCategories.includes(category)) {
+              if (this.selectedCategory === 'other') {
+                if (this.otherCategories.includes(category)) {
                   this.selectedGames.push(game);
                 }
               }
-              else if(this.selectedCategory == category) {
+              else if (this.selectedCategory === category) {
                 this.selectedGames.push(game);
               }
 
-              if(!distinctCategories.includes(category)) {
-                if(this.otherCategories.includes(category)) {
-                  if(!distinctCategories.includes('other')) {
+              if (!distinctCategories.includes(category)) {
+                if (this.otherCategories.includes(category)) {
+                  if (!distinctCategories.includes('other')) {
                     distinctCategories.push('other');
                   }
                 }
@@ -91,10 +91,10 @@ export class AppComponent implements OnInit {
   }
 
   categoryIsSelected(category: string): boolean {
-    return this.selectedCategory == category;
+    return this.selectedCategory === category;
   }
 
-  selectCategory(category: string) {
+  selectCategory(category: string): void {
     this.selectedCategory = category;
     this.getCurrentCategoryGames();
   }

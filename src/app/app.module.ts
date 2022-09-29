@@ -8,11 +8,11 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import {ApiModule} from './api/api.module';
-import {GameModule} from "./game/game.module";
-import {gameReducer} from "./store/game/game.reducer";
-import {GameEffects} from "./store/game/game.effects";
-import {jackpotReducer} from "./store/jackpot/jackpot.reducer";
-import {JackpotEffects} from "./store/jackpot/jackpot.effects";
+import {GameModule} from './game/game.module';
+import {gameReducer} from './store/game/game.reducer';
+import {GameEffects} from './store/game/game.effects';
+import {jackpotReducer} from './store/jackpot/jackpot.reducer';
+import {JackpotEffects} from './store/jackpot/jackpot.effects';
 
 @NgModule({
   declarations: [

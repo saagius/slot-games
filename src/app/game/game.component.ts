@@ -1,11 +1,11 @@
-import {Component, Input} from '@angular/core';
-import {formatCurrency} from "@angular/common";
+import {Component, Input, OnInit} from '@angular/core';
+import {formatCurrency} from '@angular/common';
 import {Game} from './game';
-import {selectJackpot} from "../store/jackpot/jackpot.selectors";
-import {Store} from "@ngrx/store";
-import {AppState} from "../store/app.state";
-import {Jackpot} from "../jackpot/jackpot";
-import {filter, map} from "rxjs/operators";
+import {selectJackpot} from '../store/jackpot/jackpot.selectors';
+import {Store} from '@ngrx/store';
+import {AppState} from '../store/app.state';
+import {Jackpot} from '../jackpot/jackpot';
+import {filter, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-game',
@@ -32,18 +32,18 @@ import {filter, map} from "rxjs/operators";
   `,
   styleUrls: ['./game.component.scss']
 })
-export class GameComponent {
+export class GameComponent implements OnInit {
   @Input() game?: Game;
-  @Input() currentCategory?: string
+  @Input() currentCategory?: string;
 
   jackpot?: Jackpot;
-  imageFound: boolean = true;
+  imageFound = true;
 
   constructor(private store: Store<AppState>) {
   }
 
   ngOnInit(): void {
-    if(this.game) {
+    if (this.game) {
       const id = this.game.id;
 
       this.store
@@ -51,9 +51,9 @@ export class GameComponent {
           map(state => selectJackpot(state, { id })),
           filter(val => val !== undefined)
         )
-        .subscribe(_jackpot => {
-          if(_jackpot) {
-            this.jackpot = _jackpot;
+        .subscribe(jackpot => {
+          if (jackpot) {
+            this.jackpot = jackpot;
           }
         });
     }
@@ -63,15 +63,15 @@ export class GameComponent {
     return formatCurrency(amount, 'en-GB', '£', 'GBP', '1.0-0');
   }
 
-  isNew() {
-    return this.game && this.game.categories.includes('new') && this.currentCategory != 'new';
+  isNew(): boolean {
+    return this.game ? this.game.categories.includes('new') && this.currentCategory !== 'new' : false;
   }
 
-  isTop() {
-    return this.game && this.game.categories.includes('top') && this.currentCategory != 'top' && !this.isNew();
+  isTop(): boolean {
+    return this.game ? this.game.categories.includes('top') && this.currentCategory !== 'top' && !this.isNew() : false;
   }
 
-  handleMissingImage(event: Event) {
+  handleMissingImage(event: Event): void {
     (event.target as HTMLImageElement).style.display = 'none';
     this.imageFound = false;
   }
