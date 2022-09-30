@@ -1,7 +1,9 @@
-import {createFeatureSelector, createSelector} from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
-    categoryFeatureKey,
-    CategoryRootState, selectedCategoryFeatureKey, SelectedCategoryRootState
+	categoryFeatureKey,
+	CategoryRootState,
+	selectedCategoryFeatureKey,
+	SelectedCategoryRootState
 } from './category.reducer';
 
 const categoriesFeature = createFeatureSelector<CategoryRootState, string[]>(categoryFeatureKey);

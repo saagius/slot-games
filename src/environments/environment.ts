@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  apiRoot: 'http://stage.whgstage.com/front-end-test'
+	production: false,
+	apiRoot: 'http://stage.whgstage.com/front-end-test'
 };
 
 /*

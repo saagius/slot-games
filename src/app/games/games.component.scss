@@ -1,0 +1,14 @@
+.games {
+  display: flex;
+
+  .games-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .game-wrapper {
+      display: flex;
+      margin: 15px 5px;
+    }
+  }
+}

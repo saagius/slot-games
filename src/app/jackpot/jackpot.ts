@@ -1,4 +1,4 @@
 export interface Jackpot {
-  game: string;
-  amount: number;
+	game: string;
+	amount: number;
 }
