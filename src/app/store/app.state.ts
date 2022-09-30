@@ -1,5 +1,11 @@
 import { GameRootState } from './game/game.reducer';
 import { JackpotRootState } from './jackpot/jackpot.reducer';
 import { CategoryRootState, SelectedCategoryRootState } from './category/category.reducer';
+import { SearchRootState } from './search/search.reducer';
 
-export type AppState = GameRootState & JackpotRootState & CategoryRootState & SelectedCategoryRootState; /* & OtherRootState  & ... */
+export type AppState =
+	GameRootState
+	& JackpotRootState
+	& CategoryRootState
+	& SelectedCategoryRootState
+	& SearchRootState;

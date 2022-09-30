@@ -11,9 +11,12 @@ export const selectVisibleGames = createSelector(
 	(state: AppState) => {
 		const games = state.game;
 		const selectedCategory = state.selectedCategory;
+		const search = state.search;
+
+		let gamesToShow: Game[] = [];
 
 		if (games && selectedCategory) {
-			return Object.keys(games).map(key => games[key]).filter((game: Game) => {
+			gamesToShow = Object.keys(games).map(key => games[key]).filter((game: Game) => {
 				if (selectedCategory === 'other') {
 					return game.categories.some(cat => {
 						return otherCategories.includes(cat);
@@ -23,7 +26,13 @@ export const selectVisibleGames = createSelector(
 				return game.categories.includes(selectedCategory);
 			});
 		} else {
-			return Object.keys(games).map(key => games[key]);
+			gamesToShow = Object.keys(games).map(key => games[key]);
 		}
+
+		if (search) {
+			gamesToShow = gamesToShow.filter(game => game.name.toLowerCase().includes(search.toLowerCase()));
+		}
+
+		return gamesToShow;
 	}
 );

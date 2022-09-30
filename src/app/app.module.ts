@@ -18,6 +18,7 @@ import { CategoryModule } from './category/category.module';
 import { RouterModule, Routes } from '@angular/router';
 import { GamesModule } from './games/games.module';
 import { GamesComponent } from './games/games.component';
+import { searchReducer } from './store/search/search.reducer';
 
 const appRoutes: Routes = [
 	{
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
 				game: gameReducer,
 				jackpot: jackpotReducer,
 				categories: categoryReducer,
-				selectedCategory: selectedCategoryReducer
+				selectedCategory: selectedCategoryReducer,
+				search: searchReducer
 			},
 			{}
 		),

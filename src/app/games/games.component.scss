@@ -1,6 +1,15 @@
+app-search {
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  z-index: 10;
+}
+
 .games {
   display: flex;
-
+  justify-content: center;
+  margin-top: 80px;
+  
   .games-wrapper {
     display: flex;
     flex-wrap: wrap;

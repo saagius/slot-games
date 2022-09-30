@@ -8,16 +8,17 @@ import { loadJackpots } from '../store/jackpot/jackpot.actions';
 @Component({
 	selector: 'app-games',
 	template: `
-    <div class="games">
-      <div class="games-wrapper">
-        <app-game
-          *ngFor="let game of $selectedGames | async; trackBy: trackById"
-          [game]="game"
-          class="game-wrapper"
-        ></app-game>
-      </div>
-    </div>
-  `,
+        <app-search></app-search>
+        <div class="games">
+            <div class="games-wrapper">
+                <app-game
+                        *ngFor="let game of $selectedGames | async; trackBy: trackById"
+                        [game]="game"
+                        class="game-wrapper"
+                ></app-game>
+            </div>
+        </div>
+	`,
 	styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
