@@ -138,6 +138,7 @@
     "use-pipe-transform-interface": true,
     "directive-selector": [
       true,
+      "element",
       "attribute",
       "app",
       "camelCase"
