@@ -1,4 +1,4 @@
 export const environment = {
 	production: true,
-	apiRoot: 'http://stage.whgstage.com/front-end-test'
+	apiRoot: 'https://stage.whgstage.com/front-end-test'
 };
