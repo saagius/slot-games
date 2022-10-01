@@ -1,15 +1,9 @@
-app-search {
-  position: fixed;
-  top: 50px;
-  width: 100%;
-  z-index: 10;
-}
-
 .games {
   display: flex;
   justify-content: center;
-  margin-top: 80px;
-  
+  margin-top: 110px;
+  margin-bottom: 15px;
+
   .games-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -17,7 +11,23 @@ app-search {
 
     .game-wrapper {
       display: flex;
-      margin: 15px 5px;
+      margin: 15px 5px 0;
     }
   }
+
+  @media (max-width: 576px) {
+    margin-top: 60px;
+  }
 }
+
+.no-games-found {
+  color: var(--green);
+  font-weight: bold;
+  padding: 50px;
+  font-size: 20px;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+}
+
+

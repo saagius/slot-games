@@ -19,6 +19,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { GamesModule } from './games/games.module';
 import { GamesComponent } from './games/games.component';
 import { searchReducer } from './store/search/search.reducer';
+import { HeaderModule } from './header/header.module';
 
 const appRoutes: Routes = [
 	{
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
 		GameModule,
 		GamesModule,
 		CategoryModule,
+		HeaderModule,
 		StoreModule.forRoot({
 				game: gameReducer,
 				jackpot: jackpotReducer,

@@ -5,16 +5,28 @@ import { loadGames } from './store/game/game.actions';
 import { ActivatedRouteSnapshot, Event, Router, RoutesRecognized } from '@angular/router';
 import { setSelectedCategory } from './store/category/category.actions';
 import { Title } from '@angular/platform-browser';
+import { map } from 'rxjs/operators';
+import { selectGamesLoaded } from './store/game/game.selectors';
 
 @Component({
 	selector: 'app-root',
 	template: `
-        <app-category></app-category>
-        <router-outlet></router-outlet>
+		<div *ngIf="loaded">
+			<app-header></app-header>
+	        <app-category></app-category>
+	        <router-outlet></router-outlet>
+        </div>
+        <div class="loading" [class.loaded]="loaded" [class.hidden]="hideLoader">
+            <img src="../assets/logo.png" alt="White Casino" />
+	        <div>Loading...</div>
+        </div>
 	`,
 	styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+	loaded = false;
+	hideLoader = false;
+
 	constructor(private store: Store<AppState>, private router: Router, private readonly title: Title) {
 		router.events.subscribe((event: Event) => {
 			if (event instanceof RoutesRecognized) {
@@ -29,6 +41,18 @@ export class AppComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.store.dispatch(loadGames());
+
+		this.store
+			.pipe(
+				map(state => selectGamesLoaded(state))
+			)
+			.subscribe(gamesLoaded => {
+				this.loaded = gamesLoaded;
+
+				setTimeout(() => {
+					this.hideLoader = true;
+				}, 1000);
+			});
 	}
 
 	private findLastFirstChild(snapshot: ActivatedRouteSnapshot): ActivatedRouteSnapshot {

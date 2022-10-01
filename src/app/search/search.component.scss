@@ -31,4 +31,10 @@
       outline: none;
     }
   }
+
+  @media (max-width: 576px) {
+    input {
+      min-width: 200px;
+    }
+  }
 }

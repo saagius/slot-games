@@ -8,8 +8,7 @@ import { SearchModule } from '../search/search.module';
 	declarations: [GamesComponent],
 	imports: [
 		CommonModule,
-		GameModule,
-		SearchModule
+		GameModule
 	],
 	exports: [GamesComponent]
 })

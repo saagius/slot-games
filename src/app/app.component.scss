@@ -1,6 +1,53 @@
+.loading {
+  background: var(--green);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  flex-direction: column;
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
+  top: 0;
+  z-index: 100;
+
+  div {
+    margin-top: 10px;
+  }
+
+  &.loaded {
+    opacity: 0;
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
+
+app-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background: var(--dark);
+  display: flex;
+  z-index: 10;
+}
+
 app-category {
   position: fixed;
   width: 100%;
   z-index: 10;
-  top: 0;
+  top: 60px;
+}
+
+@media (max-width: 576px) {
+  app-category {
+    width: auto;
+    top: 5px;
+    right: 5px;
+  }
 }

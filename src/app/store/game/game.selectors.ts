@@ -1,11 +1,19 @@
-import { createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Game } from '../../game/game';
 import { AppState } from '../app.state';
+import { gameFeatureKey, GameRootState, GameState } from './game.reducer';
 
 const otherCategories = ['fun', 'virtual', 'ball'];
 
-const selectRoot = (state: AppState) => state;
+const selectGameFeature = createFeatureSelector<GameRootState, GameState>(gameFeatureKey);
+export const selectGamesLoaded = createSelector(
+	selectGameFeature,
+	(state: GameState) => {
+		return Object.keys(state).length > 0;
+	}
+)
 
+const selectRoot = (state: AppState) => state;
 export const selectVisibleGames = createSelector(
 	selectRoot,
 	(state: AppState) => {
@@ -13,7 +21,7 @@ export const selectVisibleGames = createSelector(
 		const selectedCategory = state.selectedCategory;
 		const search = state.search;
 
-		let gamesToShow: Game[] = [];
+		let gamesToShow: Game[];
 
 		if (games && selectedCategory) {
 			gamesToShow = Object.keys(games).map(key => games[key]).filter((game: Game) => {
