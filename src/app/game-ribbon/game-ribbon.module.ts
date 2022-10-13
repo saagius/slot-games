@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SearchComponent } from './search.component';
+import { GameRibbonComponent } from './game-ribbon.component';
 
 @NgModule({
 	declarations: [
-		SearchComponent
+		GameRibbonComponent
 	],
 	imports: [
 		CommonModule
 	],
-	exports: [SearchComponent]
+	exports: [GameRibbonComponent]
 })
-export class SearchModule {
+export class GameRibbonModule {
 }

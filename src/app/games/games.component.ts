@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../store/app.state';
-import { Game } from '../game/game';
-import { selectVisibleGames } from '../store/game/game.selectors';
-import { loadJackpots } from '../store/jackpot/jackpot.actions';
 import { map } from 'rxjs/operators';
+
+import { AppState } from '../store/app.state';
+import { selectVisibleGameIds } from '../store/game/game.selectors';
+import { loadJackpots } from '../store/jackpot/jackpot.actions';
 
 @Component({
 	selector: 'app-games',
@@ -12,8 +12,8 @@ import { map } from 'rxjs/operators';
         <div class="games">
             <div class="games-wrapper" *ngIf="hasGames; else noGamesFound">
                 <app-game
-                        *ngFor="let game of $selectedGames | async; trackBy: trackById"
-                        [game]="game"
+                        *ngFor="let gameId of $selectedGameIds | async; trackBy: trackById"
+                        [gameId]="gameId"
                         class="game-wrapper"
                 ></app-game>
             </div>
@@ -27,7 +27,7 @@ import { map } from 'rxjs/operators';
 	styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
-	$selectedGames = this.store.select(selectVisibleGames);
+	$selectedGameIds = this.store.select(selectVisibleGameIds);
 	hasGames = false;
 
 	constructor(private store: Store<AppState>) {
@@ -38,14 +38,14 @@ export class GamesComponent implements OnInit {
 
 		this.store
 			.pipe(
-				map(state => selectVisibleGames(state))
+				map(state => selectVisibleGameIds(state))
 			)
 			.subscribe(visibleGames => {
 				this.hasGames = visibleGames.length > 0;
 			});
 	}
 
-	trackById(index: number, item: Game): string {
-		return item.id;
+	trackById(index: number, id: string): string {
+		return id;
 	}
 }

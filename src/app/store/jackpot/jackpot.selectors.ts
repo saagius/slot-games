@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+
 import { jackpotFeatureKey, JackpotRootState, JackpotState } from './jackpot.reducer';
 
 const selectJackpotFeature = createFeatureSelector<JackpotRootState, JackpotState>(jackpotFeatureKey);

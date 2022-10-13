@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from './store/app.state';
-import { loadGames } from './store/game/game.actions';
 import { ActivatedRouteSnapshot, Event, Router, RoutesRecognized } from '@angular/router';
-import { setSelectedCategory } from './store/category/category.actions';
 import { Title } from '@angular/platform-browser';
 import { map } from 'rxjs/operators';
+
+import { AppState } from './store/app.state';
+import { loadGames } from './store/game/game.actions';
+import { setSelectedCategory } from './store/category/category.actions';
 import { selectGamesLoaded } from './store/game/game.selectors';
+import { setActive } from './store/active/active.actions';
 
 @Component({
 	selector: 'app-root',
@@ -26,6 +28,15 @@ import { selectGamesLoaded } from './store/game/game.selectors';
 export class AppComponent implements OnInit {
 	loaded = false;
 	hideLoader = false;
+
+	@HostListener('document:visibilitychange', ['$event'])
+	visibilitychange() {
+		if (document.hidden){
+			this.store.dispatch(setActive({ active: false }));
+		} else {
+			this.store.dispatch(setActive({ active: true }));
+		}
+	}
 
 	constructor(private store: Store<AppState>, private router: Router, private readonly title: Title) {
 		router.events.subscribe((event: Event) => {

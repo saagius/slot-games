@@ -2,29 +2,24 @@ import { Component, Input, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import { Game } from './game';
+import { Game } from '../game/game';
 import { AppState } from '../store/app.state';
 import { selectGame } from '../store/game/game.selectors';
 
 @Component({
-	selector: 'app-game',
+	selector: 'app-game-image',
 	template: `
-        <div class="game" *ngIf="game">
-            <app-game-jackpot [gameId]="gameId"></app-game-jackpot>
-	        <app-game-ribbon [gameId]="gameId"></app-game-ribbon>
-            <app-game-image [gameId]="gameId"></app-game-image>
-            <div class="game-details">
-                <div class="game-name">{{game.name}}</div>
-                <button>Play</button>
-            </div>
+        <div class="game-image" *ngIf="game">
+            <img [src]="game.image" [alt]="game.name" (error)="handleMissingImage($event)">
+            <div class="game-image-not-found" *ngIf="!imageFound">Image not available</div>
         </div>
-        <div class="game-loading" *ngIf="!game">Loading...</div>
 	`,
-	styleUrls: ['./game.component.scss']
+	styleUrls: ['./game-image.component.scss']
 })
-export class GameComponent implements OnInit {
+export class GameImageComponent implements OnInit {
 	@Input() gameId?: string;
 	game?: Game;
+	imageFound = true;
 
 	constructor(private store: Store<AppState>) {
 	}
@@ -43,5 +38,10 @@ export class GameComponent implements OnInit {
 					}
 				});
 		}
+	}
+
+	handleMissingImage(event: Event): void {
+		(event.target as HTMLImageElement).style.display = 'none';
+		this.imageFound = false;
 	}
 }

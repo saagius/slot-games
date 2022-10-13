@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+
 import { setCategories, setSelectedCategory } from './category.actions';
 
 export const categoryFeatureKey = 'categories';

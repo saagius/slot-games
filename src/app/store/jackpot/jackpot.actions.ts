@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+
 import { Jackpot } from '../../jackpot/jackpot';
 
 export const loadJackpots = createAction('[Jackpot List] Load Jackpots');

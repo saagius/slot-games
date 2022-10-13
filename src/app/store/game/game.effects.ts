@@ -1,9 +1,10 @@
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { GameService } from '../../api/game.service';
 import { Injectable } from '@angular/core';
-import { loadGames, loadGamesError, loadGamesSuccess } from './game.actions';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, delay, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+
+import { GameService } from '../../api/game.service';
+import { loadGames, loadGamesError, loadGamesSuccess } from './game.actions';
 import { setCategories } from '../category/category.actions';
 import { Game } from '../../game/game';
 

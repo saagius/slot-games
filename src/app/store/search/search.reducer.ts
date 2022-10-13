@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+
 import { setSearch } from './search.actions';
 
 export const searchFeatureKey = 'search';

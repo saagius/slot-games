@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SearchComponent } from './search.component';
+import { GameJackpotComponent } from './game-jackpot.component';
 
 @NgModule({
 	declarations: [
-		SearchComponent
+		GameJackpotComponent
 	],
 	imports: [
 		CommonModule
 	],
-	exports: [SearchComponent]
+	exports: [GameJackpotComponent]
 })
-export class SearchModule {
+export class GameJackpotModule {
 }

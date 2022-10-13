@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+
 import { Game } from '../../game/game';
 import { AppState } from '../app.state';
 import { gameFeatureKey, GameRootState, GameState } from './game.reducer';
@@ -13,15 +14,22 @@ export const selectGamesLoaded = createSelector(
 	}
 )
 
+export const selectGame = createSelector(
+	selectGameFeature,
+	(state: GameState, props: { id: string }) => {
+		return state[props.id];
+	}
+)
+
 const selectRoot = (state: AppState) => state;
-export const selectVisibleGames = createSelector(
+export const selectVisibleGameIds = createSelector(
 	selectRoot,
 	(state: AppState) => {
 		const games = state.game;
 		const selectedCategory = state.selectedCategory;
 		const search = state.search;
 
-		let gamesToShow: Game[];
+		let gamesToShow: Game[] = [];
 
 		if (games && selectedCategory) {
 			gamesToShow = Object.keys(games).map(key => games[key]).filter((game: Game) => {
@@ -41,6 +49,6 @@ export const selectVisibleGames = createSelector(
 			gamesToShow = gamesToShow.filter(game => game.name.toLowerCase().includes(search.toLowerCase()));
 		}
 
-		return gamesToShow;
+		return gamesToShow.map(game => game.id);
 	}
 );

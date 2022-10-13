@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+
 import { loadJackpotsSuccess } from './jackpot.actions';
 import { Jackpot } from '../../jackpot/jackpot';
 

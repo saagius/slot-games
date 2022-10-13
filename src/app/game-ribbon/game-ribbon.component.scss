@@ -1,0 +1,19 @@
+.box {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  z-index: 2;
+
+  .ribbon {
+    background: var(--green);
+    box-shadow: 0 0 0 999px var(--green);
+    clip-path: inset(0 -100%);
+    color: white;
+
+    &.right {
+      inset: 0 0 auto auto;
+      transform-origin: 0 0;
+      transform: translate(29.3%) rotate(45deg);
+    }
+  }
+}

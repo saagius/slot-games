@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+
 import { Game } from '../../game/game';
 
 export const loadGames = createAction('[Game List] Load Games');

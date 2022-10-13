@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { GameComponent } from './game.component';
-import { LazyImgDirective } from '../directives/lazy.directive';
+import { GameJackpotModule } from '../game-jackpot/game-jackpot.module';
+import { GameRibbonModule } from '../game-ribbon/game-ribbon.module';
+import { GameImageModule } from '../game-image/game-image.module';
 
 @NgModule({
 	declarations: [
-		GameComponent,
-		LazyImgDirective
+		GameComponent
 	],
 	imports: [
-		CommonModule
+		CommonModule,
+		GameJackpotModule,
+		GameRibbonModule,
+		GameImageModule
 	],
 	exports: [GameComponent]
 })

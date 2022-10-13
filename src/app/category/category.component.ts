@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs/operators';
+
 import { AppState } from '../store/app.state';
 import { selectCategories, selectSelectedCategory } from '../store/category/category.selectors';
-import { map } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-category',

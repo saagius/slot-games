@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+
 import { loadGamesSuccess } from './game.actions';
 import { Game } from '../../game/game';
 
